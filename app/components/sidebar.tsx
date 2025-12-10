@@ -1,41 +1,41 @@
 "use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./sidebar.module.css";
 
 export default function Sidebar() {
+  const pathname = usePathname(); // /home, /employee ...
+
+  const links = [
+    { href: "/home", icon: "🏠", text: "الرئيسية" },
+    { href: "/operations", icon: "🔄", text: "العمليات" },
+    { href: "/warehouse", icon: "📦", text: "العقد/المخازن" },
+    { href: "/employee", icon: "👥", text: "الموظفين" },
+    { href: "/location", icon: "📍", text: "المكان" },
+    { href: "/editors", icon: "👨‍💼", text: "المجردين" },
+  ];
+
   return (
     <aside className={styles["sidebar"]}>
-      <div className={styles["breadcrumb-sidebar"]}>الرئيسية</div>
-
+      
       <nav className={styles["nav-menu"]}>
-        <a href="#" className={`${styles["nav-link"]} ${styles["active"]}`}>
-          <span className={styles["nav-icon"]}>🏠</span>
-          <span className={styles["nav-text"]}>الرئيسية</span>
-        </a>
+        {links.map((link) => {
+          const isActive = pathname === link.href;
 
-        <a href="#" className={styles["nav-link"]}>
-          <span className={styles["nav-icon"]}>🔄</span>
-          <span className={styles["nav-text"]}>العمليات</span>
-        </a>
-
-        <a href="#" className={styles["nav-link"]}>
-          <span className={styles["nav-icon"]}>📦</span>
-          <span className={styles["nav-text"]}>العقد/المخازن</span>
-        </a>
-
-        <a href="#" className={styles["nav-link"]}>
-          <span className={styles["nav-icon"]}>👥</span>
-          <span className={styles["nav-text"]}>الموظفين</span>
-        </a>
-
-        <a href="#" className={styles["nav-link"]}>
-          <span className={styles["nav-icon"]}>📍</span>
-          <span className={styles["nav-text"]}>المكان</span>
-        </a>
-
-        <a href="#" className={styles["nav-link"]}>
-          <span className={styles["nav-icon"]}>👨‍💼</span>
-          <span className={styles["nav-text"]}>المحررين</span>
-        </a>
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`${styles["nav-link"]} ${
+                isActive ? styles["active"] : ""
+              }`}
+            >
+              <span className={styles["nav-icon"]}>{link.icon}</span>
+              <span className={styles["nav-text"]}>{link.text}</span>
+            </Link>
+          );
+        })}
       </nav>
     </aside>
   );

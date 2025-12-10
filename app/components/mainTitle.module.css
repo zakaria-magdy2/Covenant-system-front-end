@@ -1,0 +1,33 @@
+/* Page Title Section */
+.page-title-section {
+  text-align: right;
+  margin-bottom: 35px;
+}
+
+.main-title {
+  font-size: 34px;
+  color: #2c2c2c;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.welcome-text {
+  color: #555;
+  font-size: 15px;
+  margin: 4px 0;
+  line-height: 1.6;
+}
+
+.college-title {
+  color: #2c2c2c;
+  font-size: 26px;
+  margin-top: 15px;
+  font-weight: 600;
+}
+.breadcrumb {
+  font-size: 14px;
+  color: black;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: right !important;
+}

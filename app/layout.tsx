@@ -1,3 +1,8 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap"
+  rel="stylesheet"
+/>;
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";

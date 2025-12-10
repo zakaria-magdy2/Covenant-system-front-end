@@ -17,11 +17,30 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Cairo", sans-serif;
+  direction: rtl;
+  background-color: #d9d9d9;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ==================== Main Layout ==================== */
+.main-layout {
+  display: flex;
+  min-height: calc(100vh - 62px);
+}
+
+/* ==================== Main Content ==================== */
+.main-content {
+  flex: 1;
+  padding: 15px 20px;
+  background-color: #d9d9d9;
+  overflow-y: auto;
 }
 
 * {

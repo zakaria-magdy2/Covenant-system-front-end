@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import "./home.css";
 import Sidebar from "../components/sidebar";
 import Header from "../components/header";
+import MainTitle from "../components/mainTitle";
 
 export default function Home() {
   return (
@@ -18,13 +19,8 @@ export default function Home() {
 
         {/* Main Content */}
         <main className="main-content">
-          {/* Page Title Section */}
-          <div className="page-title-section">
-            <h1 className="main-title">نظام جرد العود والمخازن</h1>
-            <p className="welcome-text">مرحبا بك في نظام إدارة العود</p>
-            <p className="welcome-text">والمخازن</p>
-            <h2 className="college-title">الكلية العلوم</h2>
-          </div>
+          {/* Main Title */}
+          <MainTitle />
 
           {/* Quick Access */}
           <div className="quick-access-section">

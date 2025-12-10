@@ -1,27 +1,3 @@
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  direction: rtl;
-  background-color: #d9d9d9;
-}
-
-.container {
-  min-height: 100vh;
-  position: relative;
-}
-
-/* ==================== Main Layout ==================== */
-.main-layout {
-  display: flex;
-  min-height: calc(100vh - 62px);
-}
-
-/* ==================== Main Content ==================== */
-.main-content {
-  flex: 1;
-  padding: 35px 40px;
-  background-color: #d9d9d9;
-  overflow-y: auto;
-}
 
 /* Page Title Section */
 .page-title-section {
@@ -48,7 +24,7 @@ body {
   font-size: 26px;
   margin-top: 15px;
   font-weight: 600;
-}
+} 
 
 /* Quick Access Section */
 .quick-access-section {
