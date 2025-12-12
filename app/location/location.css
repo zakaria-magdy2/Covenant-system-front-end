@@ -1,0 +1,253 @@
+/* === Layout === */
+.container {
+  width: 100%;
+}
+
+.main-layout {
+  display: flex;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* === Location Page Content Wrapper === */
+.location-wrapper {
+  padding: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* === Left Panel (Locations List) === */
+.left-box {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+}
+
+.left-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.add-btn {
+  width: 40px;
+  height: 40px;
+  background-color: #2563EB;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.add-btn:hover {
+  background-color: #1D4ED8;
+}
+
+.left-title {
+  color: #374151;
+  font-weight: 500;
+}
+
+/* === Search Input === */
+.search-box {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  padding-right: 36px;
+  background-color: #F3F4F6;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+}
+
+/* === Locations List === */
+.locations-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.location-card {
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.location-card:hover {
+  border-color: #2563EB;
+}
+
+.location-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.location-name {
+  font-weight: bold;
+  color: #1F2937;
+  margin: 0;
+}
+
+.location-items {
+  padding: 4px 12px;
+  background-color: #2563EB;
+  color: white;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.location-building {
+  font-size: 14px;
+  color: #6B7280;
+  margin: 0;
+  text-align: left;
+}
+
+/* === Right Panel (Map Box) === */
+.map-box {
+  grid-column: span 2;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #9CA3AF;
+  font-size: 18px;
+}
+
+.map-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+/* === Modal === */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background-color: white;
+  border-radius: 8px;
+  padding: 24px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: right;
+  color: #1F2937;
+}
+
+.modal-label {
+  display: block;
+  margin-bottom: 8px;
+  text-align: right;
+  color: #374151;
+  font-weight: 500;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: right;
+  margin-bottom: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.modal-input:focus {
+  outline: none;
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.cancel-btn {
+  padding: 10px 24px;
+  background-color: #E5E7EB;
+  color: #374151;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.cancel-btn:hover {
+  background-color: #D1D5DB;
+}
+
+.save-btn {
+  padding: 10px 24px;
+  background-color: #2563EB;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.save-btn:hover {
+  background-color: #1D4ED8;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9CA3AF;
+}

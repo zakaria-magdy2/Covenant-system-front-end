@@ -1,0 +1,27 @@
+/* خلي الحاوية Flex */
+.contentEmployee {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+/* EmployeeList على اليمين — عرض ثابت */
+.contentEmployee > :first-child {
+  width: 280px; /* عدّلها اللي يناسب التصميم */
+  flex-shrink: 0;
+}
+
+/* EmployeeDetails ياخد كل المساحة المتبقية */
+.contentEmployee > :last-child {
+  flex: 1;
+  min-width: 0;
+  /* مهم جداً عشان ما يعملش overflow */
+}
+
+/* تأكد أن الـ main-content يسمح بالتمدد (غالبًا موجود عندك) */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 62px); /* لو في header بارتفاع 62px */
+  box-sizing: border-box;
+}
