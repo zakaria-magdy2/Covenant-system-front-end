@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import styles from "./EmployeeDetails.module.css";
 import Image from "next/image";
+import { fetchWithAuth } from "../lib/fetchWithAuth";
 
 type Op = { type: string; item: string; qty: number; date: string };
 type Asset = { item: string; qty: number; lastTransfer?: string };
@@ -9,74 +10,12 @@ type Emp = {
   id: string;
   name: string;
   jobTitle?: string;
-  department?: string;
+  building?: string;
   phone?: string;
   nationalId?: string;
   avatarUrl?: string;
   operations?: Op[];
   assets?: Asset[];
-};
-
-/* بيانات تجريبية */
-const DUMMY: Record<string, Emp> = {
-  "1": {
-    id: "1",
-    name: "أحمد محمد علي",
-    jobTitle: "مهندس",
-    department: "قسم الفيزياء",
-    phone: "01274244766",
-    nationalId: "123456789123",
-    avatarUrl: "/icon/lucide_user-round.svg",
-    assets: [
-      { item: "جهاز كمبيوتر محمول Dell", qty: 1, lastTransfer: "2024-06-20" },
-      { item: "شاشة LCD 24 بوصة", qty: 2, lastTransfer: "2025-01-10" },
-    ],
-    operations: [
-      { type: "نقل", item: "لوحة مفاتيح", qty: 3, date: "2025-09-20" },
-      { type: "نقل", item: "شاشة LCD 24 بوصة", qty: 2, date: "2025-01-10" },
-      { type: "استلام", item: "ماوس", qty: 1, date: "2025-10-01" },
-    ],
-  },
-
-  "2": {
-    id: "2",
-    name: "محمد علي",
-    jobTitle: "فني مختبر",
-    department: "قسم الكيمياء",
-    phone: "01012345678",
-    nationalId: "987654321987",
-    avatarUrl: "/icon/lucide_user-round.svg",
-    assets: [{ item: "ميكروسكوب", qty: 1, lastTransfer: "2024-08-10" }],
-    operations: [
-      { type: "استلام", item: "ميكروسكوب", qty: 1, date: "2024-08-10" },
-    ],
-  },
-
-  "3": {
-    id: "3",
-    name: "إبراهيم حسن",
-    jobTitle: "محاضر",
-    department: "قسم الرياضيات",
-    phone: "01122334455",
-    nationalId: "321654987123",
-    avatarUrl: "/icon/lucide_user-round.svg",
-    assets: [{ item: "حاسبة علمية", qty: 1, lastTransfer: "2023-05-12" }],
-    operations: [
-      { type: "استلام", item: "حاسبة علمية", qty: 1, date: "2023-05-12" },
-    ],
-  },
-
-  "4": {
-    id: "4",
-    name: "خالد سمير",
-    jobTitle: "معيد",
-    department: "قسم الأحياء",
-    phone: "01500998877",
-    nationalId: "998877665544",
-    avatarUrl: "/icon/lucide_user-round.svg",
-    assets: [],
-    operations: [],
-  },
 };
 
 function EmptyDetails() {
@@ -96,12 +35,6 @@ function EmptyDetails() {
   );
 }
 
-/**
- * EmployeeDetails
- * Props:
- *  - selectedId?: string | null
- *  - employee?: Emp | null
- */
 export default function EmployeeDetails({
   selectedId,
   employee,
@@ -127,14 +60,16 @@ export default function EmployeeDetails({
     setLoading(true);
     (async () => {
       try {
-        const res = await fetch(`/api/employee/${selectedId}`);
+        const res = await fetchWithAuth(`/api/employeeById/${selectedId}`, {
+          credentials: "include",
+        });
         if (!res.ok) throw new Error("no api");
         const data = await res.json();
         if (!mounted) return;
         setEmp(data);
-      } catch {
+      } catch (err) {
         if (!mounted) return;
-        setEmp(DUMMY[selectedId] ?? null);
+        setEmp(null);
       } finally {
         if (mounted) setLoading(false);
       }
@@ -143,6 +78,11 @@ export default function EmployeeDetails({
       mounted = false;
     };
   }, [selectedId, employee]);
+
+  const handlePrint = () => {
+    if (!emp) return;
+    window.open(`/api/printEmployeePdf/${emp.nationalId}`, "_blank");
+  };
 
   if (!selectedId && !emp) return <EmptyDetails />;
   if (loading) return <div className={styles.emptyBox}>...جاري التحميل</div>;
@@ -170,7 +110,7 @@ export default function EmployeeDetails({
                 width={16}
                 height={16}
               />
-              {emp.department ?? emp.jobTitle}
+              {emp.building}
             </div>
             <div className={styles.contact}>
               <Image
@@ -193,7 +133,9 @@ export default function EmployeeDetails({
           </div>
         </div>
 
-        <button className={styles.printBtn}>طباعة العهد</button>
+        <button className={styles.printBtn} onClick={handlePrint}>
+          طباعة العهد
+        </button>
       </div>
 
       <div className={styles.tabsRow}>

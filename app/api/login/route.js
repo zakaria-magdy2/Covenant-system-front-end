@@ -9,6 +9,7 @@ export async function POST(req) {
       "http://invtrackapi.runasp.net/api/Authentication/LoginAdmin",
       {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
           Accept: "*/*",
@@ -33,10 +34,10 @@ export async function POST(req) {
       name: "token",
       value: data.token,
       httpOnly: true,
-      secure: true,
-      sameSite: "strict",
+      secure: false,
+      sameSite: "lax",
       path: "/",
-      expires: new Date(data.expiration),
+      maxAge: 60 * 60,
     });
 
     return NextResponse.json(

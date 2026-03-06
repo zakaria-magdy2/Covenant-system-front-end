@@ -3,6 +3,8 @@
   display: flex;
   gap: 20px;
   width: 100%;
+  max-height: 500px;
+  overflow: hidden; /* عشان ما يطلعش سكرول */
 }
 
 /* EmployeeList على اليمين — عرض ثابت */
